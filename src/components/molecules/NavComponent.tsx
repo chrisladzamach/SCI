@@ -17,8 +17,8 @@ export const NavComponent: React.FC = () => {
   }, []);
 
   return (
-    <nav className="bg-gray-100 p-4 rounded-md shadow-md">
-      <ul className="flex space-x-4 min-w-full justify-between">
+    <nav className="bg-gray-600 shadow-md max-w-screen">
+      <ul className="flex ">
         <li>
           <NavLinkComponent to="/">Inicio</NavLinkComponent>
         </li>

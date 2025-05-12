@@ -1,5 +1,5 @@
 import { AutoDateTime } from '../components/molecules/autoComponents/AutoDateTime'
-import { FormField } from '../components/molecules/FormField'
+// import { FormField } from '../components/molecules/FormField'
 import { Header } from '../components/molecules/Header'
 
 export const Form1 = () => {
@@ -8,26 +8,10 @@ export const Form1 = () => {
     console.log('Formulario enviado');
   };
   return (
-    <div className='px-4'>
+    <div className=''>
       <Header formName='Control de concentración de producto en filtro sanitario' formCode='(RE-09-LC)' />
-      <form onSubmit={handleSubmit}>
+      <form className='' onSubmit={handleSubmit}>
         <AutoDateTime />
-        <FormField 
-          labelText='fecha'
-					inputId='fechaic1'
-					inputName='ic1'
-					inputType='text'
-					inputRequired={true}
-					inputPlaceholder='Escriba su nombre'
-        />
-        <FormField 
-          labelText='Hora'
-					inputId='ic1'
-					inputName='ic1'
-					inputType='text'
-					inputRequired={true}
-					inputPlaceholder='Escriba su nombre'
-        />
       </form>
     </div>
   )

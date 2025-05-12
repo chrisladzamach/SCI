@@ -40,7 +40,7 @@ export const AutoInputTime: React.FC<AutoInputTimeProps> = ({ id, name, classNam
       type="time"
       id={id}
       name={name}
-      className={`shadow cursor-not-allowed appearance-none border rounded w-full py-2 px-3 bg-zinc-200 text-gray-500 leading-tight focus:outline-none focus:shadow-outline ${className}`}
+      className={`shadow cursor-not-allowed appearance-none border rounded p-2 bg-zinc-200 text-gray-500 leading-tight focus:outline-none focus:shadow-outline ${className}`}
       value={currentTime}
       readOnly
     />
