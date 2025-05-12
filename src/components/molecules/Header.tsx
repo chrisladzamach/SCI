@@ -5,7 +5,7 @@ interface FormProps {
 
 export const Header: React.FC<FormProps> = ({ formName, formCode }) => {
   return (
-    <header className="max-w-screen bg-blue-400 text-white flex items-center gap-2">
+    <header className="max-w-screen  bg-blue-400 text-white flex items-center gap-2">
 			<a className="p-2 max-h-[300px]  bg-blue-500 rounded-lg flex items-center" href="/icmain">Volver</a>
 			<section>
 				<h2 className="font-semibold">{formName}</h2>

@@ -17,8 +17,8 @@ export const NavComponent: React.FC = () => {
   }, []);
 
   return (
-    <nav className="bg-gray-600 shadow-md max-w-screen">
-      <ul className="flex ">
+    <nav className="bg-gray-600 shadow-md max-w-screen py-2">
+      <ul className="flex justify-between">
         <li>
           <NavLinkComponent to="/">Inicio</NavLinkComponent>
         </li>
