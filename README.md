@@ -1,6 +1,6 @@
 # SCI (Sistema Centralizado de Información)
 
-## 🚀 Cómo descargar y correr este proyecto
+## Cómo descargar y correr este proyecto
 
 1. **Clona el repositorio:**
 
