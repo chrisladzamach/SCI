@@ -3,25 +3,25 @@ React + TypeScript + Tailwindcss con Vite
 
 ## ¿Cómo descargar y correr este proyecto?
 
-1. **Clona el repositorio:**
+1. **Clonar el repositorio en una máquina:**
 
 ```bash
 git clone https://github.com/chrisladzamach/SCI
 ```
 
-2. **Entra al directorio del proyecto:**
+2. **Desde su consola preferida, ingrese a la carpeta raíz del proyecto:**
 
 ```bash
 cd SCI
 ```
 
-3. **Instala las dependencias:**
+3. **Instalar las dependencias:**
 
 ```bash
 npm install
 ```
 
-4. **Inicia el servidor de desarrollo:**
+4. **Iniciar el servidor de desarrollo:**
 
 ```bash
 npm run dev
