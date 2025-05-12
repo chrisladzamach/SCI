@@ -9,7 +9,7 @@ React + TypeScript + Tailwindcss con Vite
 git clone https://github.com/chrisladzamach/SCI
 ```
 
-2. **Desde su consola o terminal preferida, ingrese a la carpeta raíz del proyecto:**
+2. **Desde su consola de comandos o terminal preferida, ingrese a la carpeta raíz del proyecto:**
 
 ```bash
 cd SCI
