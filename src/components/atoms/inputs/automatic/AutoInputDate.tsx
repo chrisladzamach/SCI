@@ -37,7 +37,7 @@ export const AutoInputDate: React.FC<AutoInputDateProps> = ({ id, name, classNam
       type="date"
       id={id}
       name={name}
-      className={`shadow cursor-not-allowed appearance-none border rounded p-2 bg-zinc-200 text-gray-500 leading-tight focus:outline-none focus:shadow-outline ${className}`}
+      className={`shadow cursor-not-allowed max-w-full flex-1 appearance-none border rounded p-2 bg-zinc-200 text-gray-500 leading-tight focus:outline-none focus:shadow-outline ${className}`}
       value={formattedDate}
       readOnly
     />
