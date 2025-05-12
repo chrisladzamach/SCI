@@ -12,7 +12,7 @@ interface FormFieldProps {
   inputRequired?: boolean;
   inputPlaceholder?: string;
   inputClassName?: string;
-  [key: string]: any; // Permite pasar otras props al div contenedor si es necesario
+  [key: string]: any;
 }
 
 export const FormField: React.FC<FormFieldProps> = ({
