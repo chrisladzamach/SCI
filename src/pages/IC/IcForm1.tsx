@@ -53,7 +53,7 @@ export const IcForm1 = () => {
           <CustomSelect
             id="filtro-de-area"
             options={filters}
-            value={filterSelected}
+            value={filterSelected?.value}
             onChange={handleFilterChange}
             className="w-full"
             label="Filtro de área"
@@ -61,7 +61,7 @@ export const IcForm1 = () => {
           <CustomSelect
             id="responsable-select"
             options={responsible}
-            value={responsibleSelected}
+            value={responsibleSelected?.value}
             onChange={handleResponsibleChange}
             className="w-full"
             label="Responsable"
