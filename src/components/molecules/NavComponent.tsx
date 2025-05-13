@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+
 import { NavLinkComponent } from '../atoms/NavLinkComponent';
 
 export const NavComponent: React.FC = () => {

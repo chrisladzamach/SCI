@@ -1,9 +1,11 @@
 import { NavComponent } from './components/molecules/NavComponent'
 import { Routes, Route } from 'react-router-dom'
+
 import { MainApp } from './pages/MainApp'
-import { IcMain } from './pages/IC/IcMain'
 import { LmbMain } from './pages/LmbMain'
 import { LfqMain } from './pages/LfqMain'
+
+import { IcMain } from './pages/IC/IcMain'
 import { IcForm1 } from './pages/IC/IcForm1' 
 import { IcForm2 } from './pages/IC/IcForm2'
 import { IcForm3 } from './pages/IC/IcForm3'
@@ -12,7 +14,6 @@ import { IcForm5 } from './pages/IC/IcForm5'
 import { IcForm6 } from './pages/IC/IcForm6'
 
 export const App = () => {
-
   return (
     <div className='h-screen w-screen'>
       <NavComponent />
