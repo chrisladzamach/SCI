@@ -46,7 +46,7 @@ export const ExpirationDate: React.FC<Props> = ({ productType, onDateCalculated 
 
   return (
     <div className="flex flex-col mb-4">
-      <LabelComponent htmlFor="dueDate" text="Fecha de vencimiento" />
+      <LabelComponent htmlFor="dueDate" text="Fecha de vencimiento: " />
       <input
         type="text"
         id="dueDate"

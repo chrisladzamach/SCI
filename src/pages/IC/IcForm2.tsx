@@ -17,7 +17,7 @@ export const IcForm2 = () => {
   const [observations, setObservations] = useState('');
   const [responsibleSelected, setResponsibleSelected] = useState<Options | null>(null);
   const [calculatedDate, setCalculatedDate] = useState('');
-
+  const [lote, setLote] = useState('');
   const handleResponsibleChange = (newValue: string | number) => {
     const selectedResponsible = responsible.find(r => r.value === String(newValue));
     setResponsibleSelected(selectedResponsible || null);
@@ -35,6 +35,8 @@ export const IcForm2 = () => {
   };
 
   const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
+
+  const handleLoteChange = (event: React.ChangeEvent<HTMLInputElement>) => setLote(event.target.value);
 
   const responsible: Options[] = [
     { value: 'inspector-calidad1', label: 'Juliana Burbano' },
@@ -92,9 +94,9 @@ export const IcForm2 = () => {
 
   return (
     <div>
-      <Header formName='Verificación de producto terminado.' formCode='(RE-05-LC)' />
+      <Header formName='Verificación de producto terminado.' formCode='(RE-05-LC)' href='/icmain' />
       <form className="p-4" onSubmit={handleSubmit}>
-        <section className="grid grid-cols-1 md:grid-cols-1 gap-4 m-4">
+        <section className="grid grid-cols-2 md:grid-cols-1 gap-4 m-4">
           <AutoDateTime />
           <ExpirationDate 
             productType={productSelected?.value as 'UHT' | 'ESSI' | 'ProductoFermentado' | null}
@@ -105,7 +107,16 @@ export const IcForm2 = () => {
             value={responsibleSelected?.value}
             onChange={handleResponsibleChange}
             className="w-full"
-            label="Responsable"
+            label="Responsable:"
+          />
+          <FormField
+            labelText="Lote:"
+            inputId="IcF1Lote"
+            inputName="Lote"
+            inputType="text"
+            inputRequired={true}
+            inputPlaceholder="Ingrese lote..."
+            onChange={handleLoteChange}
           />
         </section>
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
