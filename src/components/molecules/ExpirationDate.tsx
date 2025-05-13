@@ -3,9 +3,10 @@ import { LabelComponent } from '../atoms/LabelComponent';
 
 interface Props {
   productType: 'UHT' | 'ESSI' | 'ProductoFermentado' | null;
+  onDateCalculated?: (date: string) => void;
 }
 
-export const ExpirationDate: React.FC<Props> = ({ productType }) => {
+export const ExpirationDate: React.FC<Props> = ({ productType, onDateCalculated }) => {
   const [dueDate, setDueDate] = useState<Date | null>(null);
 
   useEffect(() => {
@@ -31,10 +32,17 @@ export const ExpirationDate: React.FC<Props> = ({ productType }) => {
       const futureDate = new Date(currentDate);
       futureDate.setDate(currentDate.getDate() + daysToAdd);
       setDueDate(futureDate);
+      
+      if (onDateCalculated) {
+        onDateCalculated(futureDate.toLocaleDateString());
+      }
     } else {
       setDueDate(null);
+      if (onDateCalculated) {
+        onDateCalculated('');
+      }
     }
-  }, [productType]);
+  }, [productType, onDateCalculated]);
 
   return (
     <div className="flex flex-col mb-4">

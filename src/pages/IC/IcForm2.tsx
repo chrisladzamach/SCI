@@ -16,8 +16,12 @@ export const IcForm2 = () => {
   const [boquillaSelected, setBoquillaSelected] = useState<Options | null>(null);
   const [observations, setObservations] = useState('');
   const [responsibleSelected, setResponsibleSelected] = useState<Options | null>(null);
+  const [calculatedDate, setCalculatedDate] = useState('');
 
-  const handleResponsibleChange = (newValue: Options | null) => setResponsibleSelected(newValue);
+  const handleResponsibleChange = (newValue: string | number) => {
+    const selectedResponsible = responsible.find(r => r.value === String(newValue));
+    setResponsibleSelected(selectedResponsible || null);
+  };
 
   const handleProductChange = (newValue: string | number) => {
     const selectedProduct = products.find(p => p.value === String(newValue));
@@ -71,13 +75,19 @@ export const IcForm2 = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Aquí podría agregar la lógica para el envío del formulario (corroborrar)
-    console.log('Formulario enviado');
-    console.log('Fecha de vencimiento:', ExpirationDate);
-    console.log('Producto seleccionado:', productSelected);
-    console.log('Boquilla seleccionada:', boquillaSelected);
-    console.log('observación ingresada:', observations);
-    console.log('Responsable seleccionado:', responsibleSelected);
+    
+    const currentDate = new Date();
+    const formData = {
+      fecha: currentDate.toLocaleDateString(),
+      hora: currentDate.toLocaleTimeString(),
+      fechaVencimiento: calculatedDate,
+      producto: productSelected?.value || '',
+      boquilla: boquillaSelected?.value || '',
+      observaciones: observations,
+      responsable: responsibleSelected?.value || '',
+    };
+
+    console.log('Datos del formulario:', formData);
   };
 
   return (
@@ -86,7 +96,10 @@ export const IcForm2 = () => {
       <form className="p-4" onSubmit={handleSubmit}>
         <section className="grid grid-cols-1 md:grid-cols-1 gap-4 m-4">
           <AutoDateTime />
-          <ExpirationDate productType={productSelected?.value as 'UHT' | 'ESSI' | 'ProductoFermentado' | null} />
+          <ExpirationDate 
+            productType={productSelected?.value as 'UHT' | 'ESSI' | 'ProductoFermentado' | null}
+            onDateCalculated={setCalculatedDate}
+          />
           <CustomSelect
             options={responsible}
             value={responsibleSelected?.value}
