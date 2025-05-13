@@ -1,4 +1,3 @@
-import React from 'react'
 
 export const IcForm6 = () => {
   return (
