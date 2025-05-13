@@ -39,7 +39,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
         onClick={handleToggle}
       >
         <span className="block w-full py-2 pl-3 pr-10 text-sm text-gray-900 truncate">
-          {options.find((opt) => opt.value === value)?.label || 'Seleccionar'}
+          {options.find((opt) => opt.value === value)?.label || 'Seleccione una opción'}
         </span>
         <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
           <svg

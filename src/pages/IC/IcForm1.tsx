@@ -66,7 +66,6 @@ export const IcForm1 = () => {
             className="w-full"
             label="Responsable"
           />
-
           <TxtArea
             id="Observations"
             name="Observations"
