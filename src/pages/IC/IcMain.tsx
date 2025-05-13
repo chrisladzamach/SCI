@@ -10,8 +10,8 @@ export const IcMain = () => {
                 to='/form1'
             />
             <FormCard 
-                title='Formulario2'
-                description='Descripción del formulario 2'
+                title='(RE-05-LC)'
+                description='Verificación de producto terminado.'
                 to='/form2'
             />
         </section>

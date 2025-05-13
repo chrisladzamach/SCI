@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface StaticInputDivosanProps {
   id?: string;
   name?: string;

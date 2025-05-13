@@ -1,5 +1,3 @@
-import React from "react";
-
 interface LabelProps extends React.LabelHTMLAttributes<HTMLLabelElement> {
   text: string;
   classNameLabel?: string;

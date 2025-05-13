@@ -1,5 +1,5 @@
-import { StaticInputConcentration } from "../../atoms/inputs/static/StaticInputConcentration"
-import { StaticInputDivosan } from "../../atoms/inputs/static/StaticInputDivosan"
+import { StaticInputConcentration } from "../../atoms/inputs/staticComponents/StaticInputConcentration"
+import { StaticInputDivosan } from "../../atoms/inputs/staticComponents/StaticInputDivosan"
 
 export const AutoProductConcentration = () => {
   return (

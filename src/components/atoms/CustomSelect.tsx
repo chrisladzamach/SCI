@@ -13,7 +13,7 @@ interface CustomSelectProps {
   label?: string;
 }
 
-const CustomSelect: React.FC<CustomSelectProps> = ({
+export const CustomSelect: React.FC<CustomSelectProps> = ({
   options,
   value,
   onChange,
@@ -96,5 +96,3 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
     </div>
   );
 };
-
-export default CustomSelect;

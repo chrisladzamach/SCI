@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface StaticInputConcentrationProps {
   id?: string;
   name?: string;

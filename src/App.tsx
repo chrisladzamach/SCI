@@ -1,11 +1,11 @@
-import './App.css'
 import { NavComponent } from './components/molecules/NavComponent'
 import { Routes, Route } from 'react-router-dom'
 import { MainApp } from './pages/MainApp'
 import { IcMain } from './pages/IC/IcMain'
 import { LmbMain } from './pages/LmbMain'
 import { LfqMain } from './pages/LfqMain'
-import { Form1 } from './pages/IC/Form1' 
+import { IcForm1 } from './pages/IC/IcForm1' 
+import { IcForm2 } from './pages/IC/IcForm2'
 
 export const App = () => {
 
@@ -17,7 +17,8 @@ export const App = () => {
         
         {/* Routes of ic */}
         <Route path="/icmain" element={<IcMain />} />
-        <Route path="/form1" element={<Form1 />} />
+        <Route path="/form1" element={<IcForm1 />} />
+        <Route path="/form2" element={<IcForm2 />} />
         
         {/* Routes of LMB */}
         <Route path="/lmbmain" element={<LmbMain />} />
