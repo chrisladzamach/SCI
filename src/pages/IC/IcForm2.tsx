@@ -13,12 +13,16 @@ export const IcForm2 = () => {
   const [productSelected, setProductSelected] = useState<Options | null>(null);
   const [boquillaSelected, setBoquillaSelected] = useState<Options | null>(null);
 
-  const handleProductChange = (newValue: Options | null) => {
-    setProductSelected(newValue);
+  const handleProductChange = (newValue: string | number) => {
+    const selectedProduct = products.find(p => p.value === String(newValue));
+    setProductSelected(selectedProduct || null);
     setBoquillaSelected(null);
   };
 
-  const handleBoquillaChange = (newValue: Options | null) => setBoquillaSelected(newValue);
+  const handleBoquillaChange = (newValue: string | number) => {
+    const selectedBoquilla = boquillaOptions.find(b => b.value === String(newValue));
+    setBoquillaSelected(selectedBoquilla || null);
+  };
 
   const products: Options[] = [
     { value: 'uht', label: 'UHT' },
@@ -77,7 +81,6 @@ export const IcForm2 = () => {
         </section>
         <section className="grid grid-cols-1 md:grid-cols-2 gap-4 m-4">
           <CustomSelect
-            id="producto"
             options={products}
             value={productSelected?.value}
             onChange={handleProductChange}
@@ -85,13 +88,11 @@ export const IcForm2 = () => {
             label="Producto: "
           />
           <CustomSelect
-            id="boquilla"
             options={boquillaOptions}
             value={boquillaSelected?.value}
             onChange={handleBoquillaChange}
             className="w-full"
             label="Boquilla: "
-            // disabled={productSelected}
           />
         </section>
       </form>
