@@ -15,21 +15,23 @@ export const AutoInputTime: React.FC<AutoInputTimeProps> = ({ id, name, classNam
     const hours = String(now.getHours()).padStart(2, '0');
     const minutes = String(now.getMinutes()).padStart(2, '0');
     setCurrentTime(`${hours}:${minutes}`);
-  }, []);
+  }, []); // Se ejecuta solo una vez al montar el componente
 
   useEffect(() => {
+    const handleFocus = (event: FocusEvent) => {
+      event.preventDefault();
+      if (inputRef.current) {
+        inputRef.current.blur();
+      }
+    };
+
     if (inputRef.current) {
-      inputRef.current.addEventListener('focus', (event) => {
-        event.preventDefault();
-        if (inputRef.current) {
-          inputRef.current.blur();
-        }
-      });
+      inputRef.current.addEventListener('focus', handleFocus);
     }
 
     return () => {
       if (inputRef.current) {
-        inputRef.current.removeEventListener('focus', () => {});
+        inputRef.current.removeEventListener('focus', handleFocus);
       }
     };
   }, []);
