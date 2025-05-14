@@ -2,8 +2,8 @@ import { NavComponent } from './components/molecules/NavComponent'
 import { Routes, Route } from 'react-router-dom'
 
 import { MainApp } from './pages/MainApp'
-import { LmbMain } from './pages/LmbMain'
-import { LfqMain } from './pages/LfqMain'
+import { LmbMain } from './pages/LMB/LmbMain'
+import { LfqMain } from './pages/LFQ/LfqMain'
 
 import { IcMain } from './pages/IC/IcMain'
 import { IcForm1 } from './pages/IC/IcForm1' 
@@ -12,6 +12,8 @@ import { IcForm3 } from './pages/IC/IcForm3'
 import { IcForm4 } from './pages/IC/IcForm4'
 import { IcForm5 } from './pages/IC/IcForm5'
 import { IcForm6 } from './pages/IC/IcForm6'
+
+import { NotFound } from './pages/NotFound'
 
 export const App = () => {
   return (
@@ -34,6 +36,8 @@ export const App = () => {
 
         {/* Routes of LMB */}
         <Route path="/lfqmain" element={<LfqMain />} />
+
+        <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
   )
