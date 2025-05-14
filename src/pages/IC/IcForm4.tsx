@@ -1,10 +1,11 @@
-import { FormButtons } from "../../components/molecules/FormButtons";
-import { Header } from "../../components/molecules/Header"
 import { useState } from "react";
-import { InputCNC }from "../../components/atoms/inputs/InputCNC";
+
 import { AutoDateTime } from "../../components/molecules/autoComponents/AutoDateTime";
+import { FormButtons } from "../../components/molecules/FormButtons";
 import { CustomSelect } from "../../components/atoms/CustomSelect";
+import { InputCNC }from "../../components/atoms/inputs/InputCNC";
 import { TxtArea } from "../../components/atoms/inputs/TxtArea";
+import { Header } from "../../components/molecules/Header";
 
 interface Options {
   value: string;
@@ -199,7 +200,7 @@ export const IcForm4 = () => {
             classNameTextArea="resize-none focus:border-blue-500"
             classNameLabel="text-blue-600 w-full"
           />
-        <section>
+        <section className="flex gap-4 my-8">
           <CustomSelect 
             options={verificationOfficer}
             value={verificationOfficerSelected?.value}

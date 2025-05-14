@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import type React from "react";
-import { Header } from "../../components/molecules/Header";
-import { CustomSelect } from "../../components/atoms/CustomSelect";
-import { AutoInputTime } from "../../components/atoms/inputs/automatic/AutoInputTime";
+
 import { AutoDateTime } from "../../components/molecules/autoComponents/AutoDateTime";
+import { AutoInputTime } from "../../components/atoms/inputs/automatic/AutoInputTime";
+import { FormButtons } from "../../components/molecules/FormButtons";
+import { CustomSelect } from "../../components/atoms/CustomSelect";
 import { FormField } from "../../components/molecules/FormField";
 import { TxtArea } from "../../components/atoms/inputs/TxtArea";
-import { FormButtons } from "../../components/molecules/FormButtons";
+import { Header } from "../../components/molecules/Header";
 
 interface Options {
   value: string;
@@ -63,8 +64,8 @@ export const IcForm3 = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     const now = new Date();
-    const isMorning = now.getHours() >= 6 && now.getHours() <= 18;
-    const momentoDelDia = isMorning ? 'Mañana' : 'Tarde/Noche';
+    const isMorning = now.getHours() >= 6 && now.getHours() < 12;
+    const momentoDelDia = isMorning ? 'Mañana' : 'Tarde';
 
     let hasErrors = false;
 
