@@ -22,7 +22,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<MainApp />} />
         
-        {/* Routes of ic */}
+        {/* Routes of Inspección de Calidad */}
         <Route path="/icmain" element={<IcMain />} />
         <Route path="/form1" element={<IcForm1 />} />
         <Route path="/form2" element={<IcForm2 />} />
@@ -31,12 +31,13 @@ export const App = () => {
         <Route path="/form5" element={<IcForm5 />} />
         <Route path="/form6" element={<IcForm6 />} />
         
-        {/* Routes of LMB */}
+        {/* Routes of Laboratorio de Microbiología */}
         <Route path="/lmbmain" element={<LmbMain />} />
 
-        {/* Routes of LMB */}
+        {/* Routes of Laboratorio de FisicoQuímica */}
         <Route path="/lfqmain" element={<LfqMain />} />
 
+        {/* Route of Page not found */}
         <Route path='*' element={<NotFound />} />
       </Routes>
     </div>
