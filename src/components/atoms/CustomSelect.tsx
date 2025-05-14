@@ -11,6 +11,7 @@ interface CustomSelectProps {
   onChange: (newValue: string | number) => void;
   className?: string; 
   label?: string;
+  required?: boolean;
 }
 
 export const CustomSelect: React.FC<CustomSelectProps> = ({
@@ -19,6 +20,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   onChange,
   className = '',
   label,
+  required = false,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -32,7 +34,7 @@ export const CustomSelect: React.FC<CustomSelectProps> = ({
   };
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative ${className}`} required={required}>
       {label && <label className="block text-gray-700 text-sm font-bold mb-2">{label}</label>}
       <div
         className="flex items-center justify-between border border-gray-300 rounded-md shadow-sm focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500 cursor-pointer"

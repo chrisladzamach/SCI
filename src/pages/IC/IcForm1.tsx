@@ -14,16 +14,27 @@ interface Options {
 export const IcForm1 = () => {
   const [filterSelected, setFilterSelected] = useState<Options | null>(null);
   const [responsibleSelected, setResponsibleSelected] = useState<Options | null>(null);
-  const [miTexto, setMiTexto] = useState('');
+  const [observations, setObservations] = useState('');
 
-  const handleFilterChange = (newValue: Options | null) => setFilterSelected(newValue);
-  const handleResponsibleChange = (newValue: Options | null) => setResponsibleSelected(newValue);
-  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => setMiTexto(event.target.value);
+  const handleObservationChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setObservations(event.target.value);
+  };
+
+  const handleFilterChange = (newValue: string | number) => {
+    const selectedFilter = filters.find(f => f.value === String(newValue));
+    setFilterSelected(selectedFilter || null);
+  };
+
+  const handleResponsibleChange = (newValue: string | number) => {
+    const selectedResponsible = responsible.find(r => r.value === String(newValue));
+    setResponsibleSelected(selectedResponsible || null);
+  };
 
   const filters: Options[] = [
-    { value: 'filtro-de-area1', label: 'Filtro 1' },
-    { value: 'filtro-de-area2', label: 'Filtro 2' },
-    { value: 'filtro-de-area3', label: 'Filtro 3' },
+    { value: 'Filtro-UHT', label: 'Filtro UHT' },
+    { value: 'Filtro-Fermentados', label: 'Filtro Fermentados' },
+    { value: 'Filtro-Bodega', label: 'Filtro Bodega' },
+    { value: 'Filtro-Bodega-UHT', label: 'Filtro Bodega UHT' },
   ];
 
   const responsible: Options[] = [
@@ -34,11 +45,21 @@ export const IcForm1 = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    // Aquí podría agregar la lógica para el envío del formulario (corroborrar)
-    console.log('Formulario enviado');
-    console.log('Filtro seleccionado:', filterSelected);
-    console.log('Responsable seleccionado:', responsibleSelected);
-    console.log('Texto ingresado:', miTexto);
+
+    if (!filterSelected || !responsibleSelected) return;
+
+    const currentDate = new Date();
+    const formData = {
+      fecha: currentDate.toLocaleDateString(),
+      hora: currentDate.toLocaleTimeString(),
+      producto: 'Divosan',
+      concentration: '0.20%',
+      filtro: filterSelected?.value || '',
+      responsable: responsibleSelected?.value || '',
+      observaciones: observations,
+    };
+
+    console.log(formData);
   };
 
   return (
@@ -51,20 +72,20 @@ export const IcForm1 = () => {
         </section>
         <section className="grid grid-cols-1 md:grid-cols-1 gap-4 mt-4">
           <CustomSelect
-            id="filtro-de-area"
             options={filters}
             value={filterSelected?.value}
             onChange={handleFilterChange}
             className="w-full"
             label="Filtro de área"
+            required
           />
           <CustomSelect
-            id="responsable-select"
             options={responsible}
             value={responsibleSelected?.value}
             onChange={handleResponsibleChange}
             className="w-full"
             label="Responsable"
+            required
           />
           <TxtArea
             id="Observations"
@@ -72,8 +93,8 @@ export const IcForm1 = () => {
             label="Observaciones"
             rows={5}
             placeholder="Ingrese observaciones si las hay..."
-            value={miTexto}
-            onChange={handleChange}
+            value={observations}
+            onChange={handleObservationChange}
             classNameTextArea="resize-none focus:border-blue-500"
             classNameLabel="text-blue-600"
           />

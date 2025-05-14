@@ -19,6 +19,7 @@ export const IcForm2 = () => {
   const [responsibleSelected, setResponsibleSelected] = useState<Options | null>(null);
   const [calculatedDate, setCalculatedDate] = useState('');
   const [lote, setLote] = useState('');
+  
   const handleResponsibleChange = (newValue: string | number) => {
     const selectedResponsible = responsible.find(r => r.value === String(newValue));
     setResponsibleSelected(selectedResponsible || null);
@@ -84,13 +85,14 @@ export const IcForm2 = () => {
       fecha: currentDate.toLocaleDateString(),
       hora: currentDate.toLocaleTimeString(),
       fechaVencimiento: calculatedDate,
+      lote: lote, 
       producto: productSelected?.value || '',
       boquilla: boquillaSelected?.value || '',
       observaciones: observations,
       responsable: responsibleSelected?.value || '',
     };
 
-    console.log('Datos del formulario:', formData);
+    console.log(formData);
   };
 
   return (
