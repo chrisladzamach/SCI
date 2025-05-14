@@ -4,6 +4,7 @@ import { useState } from "react";
 import { InputCNC }from "../../components/atoms/inputs/InputCNC";
 import { AutoDateTime } from "../../components/molecules/autoComponents/AutoDateTime";
 import { CustomSelect } from "../../components/atoms/CustomSelect";
+import { TxtArea } from "../../components/atoms/inputs/TxtArea";
 
 interface Options {
   value: string;
@@ -21,6 +22,10 @@ export const IcForm4 = () => {
   const [cumpleRequisito8, setCumpleRequisito8] = useState('');
   const [cumpleRequisito9, setCumpleRequisito9] = useState('');
   const [cumpleRequisito10, setCumpleRequisito10] = useState('');
+
+  const [observations, setObservations] = useState('');
+
+  const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
 
   const [verificationOfficerSelected, setVerificationOfficerSelected] = useState<Options | null>(null);
   const [approvalOfficerSelected, setApprovalOfficerSelected] = useState<Options | null>(null);
@@ -90,6 +95,11 @@ export const IcForm4 = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
+    if ( !cumpleRequisito1 || !cumpleRequisito2 || !cumpleRequisito3 || !cumpleRequisito4 || !cumpleRequisito5 || !cumpleRequisito6 || !cumpleRequisito7 || !cumpleRequisito8 || !cumpleRequisito9 || !cumpleRequisito10 ) {
+      alert('Por favor, complete todos los requisitos antes de guardar.');
+      return;
+    }
+
     const currentDate = new Date();
     const formData = {
       fecha: currentDate.toLocaleDateString(),
@@ -104,6 +114,7 @@ export const IcForm4 = () => {
       requisito8: cumpleRequisito8,
       requisito9: cumpleRequisito9,
       requisito10: cumpleRequisito10,
+      observaciones: observations,
       responsableVerificacion: verificationOfficerSelected?.value || '',
       responsableAprobacion: approvalOfficerSelected?.value || '',
     };
@@ -115,10 +126,10 @@ export const IcForm4 = () => {
     <div>
       <Header formCode="(RE-07-LC)" formName="Inspección de limpieza y desinfección en planta" href="/icmain" />
       <form action="" onSubmit={handleSubmit} className="p-4">
-        <section>
+        <section className="grid grid-cols-2 md:grid-cols-1 gap-4">
           <AutoDateTime />
         </section>
-        <section className="grid grid-cols-2 gap-x-10 gap-y-4 p-4 border-1 border-b border-zinc-300">
+        <section className="grid grid-cols-2 gap-x-10 gap-y-4 p-4 my-4 border-1 border-b border-zinc-300">
           <InputCNC
             nombreCriterio="Ventanas, Puertas y otras aberturas."
             value={cumpleRequisito1}
@@ -186,6 +197,17 @@ export const IcForm4 = () => {
             name="ordendearea"
           />
         </section>
+          <TxtArea 
+            id="Observations"
+            name="Observations"
+            label="Observaciones"
+            rows={5}
+            placeholder="Ingrese observaciones si las hay..."
+            value={observations}
+            onChange={handleObservations}
+            classNameTextArea="resize-none focus:border-blue-500"
+            classNameLabel="text-blue-600 w-full"
+          />
         <section>
           <CustomSelect 
             options={verificationOfficer}
