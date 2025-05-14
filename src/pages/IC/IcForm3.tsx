@@ -26,7 +26,6 @@ export const IcForm3 = () => {
   const [temperaturaError, setTemperaturaError] = useState('');
   const [humedadRelativaError, setHumedadRelativaError] = useState('');
   const [responsibleError, setResponsibleError] = useState('');
-  const [observationsError, setObservationsError] = useState('');
 
   useEffect(() => {
     const currentDate = new Date();
@@ -63,13 +62,16 @@ export const IcForm3 = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    const now = new Date();
+    const isMorning = now.getHours() >= 6 && now.getHours() <= 18;
+    const momentoDelDia = isMorning ? 'Mañana' : 'Tarde/Noche';
+
     let hasErrors = false;
 
     setAreaError('');
     setTemperaturaError('');
     setHumedadRelativaError('');
     setResponsibleError('');
-    setObservationsError('');
 
     if (!areaSelected) {
       setAreaError('Falta seleccionar el área');
@@ -87,14 +89,11 @@ export const IcForm3 = () => {
       setResponsibleError('Falta seleccionar el responsable');
       hasErrors = true;
     }
-    if (!observations) {
-      setObservationsError('Faltan las observaciones');
-      hasErrors = true;
-    }
 
     if (hasErrors) return;
 
     const formData = {
+      momentoDelDia: momentoDelDia,
       fecha: registroInfo?.fecha,
       hora: registroInfo?.hora,
       area: areaSelected?.value,
@@ -104,12 +103,12 @@ export const IcForm3 = () => {
       observaciones: observations,
     };
     console.log(formData);
-    // Aquí va la lógica para enviar los datos del formulario
+    // Aquí va la lógica para enviar los datos del formulario al back
   };
 
   return (
     <div>
-      <Header formCode="(RE-06-LC)" formName="Verificación de condiciones ambientales" />
+      <Header formCode="(RE-06-LC)" formName="Verificación de condiciones ambientales" href="/icmain" />
       <form onSubmit={handleSubmit}>
         <section className="flex flex-col gap-4 p-4 border-1 border-b border-zinc-300">
           {registroInfo && <AutoDateTime />}
@@ -165,7 +164,6 @@ export const IcForm3 = () => {
             classNameTextArea="resize-none focus:border-blue-500"
             classNameLabel="text-blue-600"
           />
-          {observationsError && <p className="text-red-500 text-sm">{observationsError}</p>}
         </section>
         <FormButtons />
       </form>
