@@ -22,19 +22,16 @@ export const IcForm4 = () => {
   const [cumpleRequisito8, setCumpleRequisito8] = useState('');
   const [cumpleRequisito9, setCumpleRequisito9] = useState('');
   const [cumpleRequisito10, setCumpleRequisito10] = useState('');
-
   const [observations, setObservations] = useState('');
-
-  const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
-
   const [verificationOfficerSelected, setVerificationOfficerSelected] = useState<Options | null>(null);
   const [approvalOfficerSelected, setApprovalOfficerSelected] = useState<Options | null>(null);
 
+  const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
+  
   const handleApprovalOfficerChange = (newValue: string | number) => {
     const selectedApprovalOfficer = approvalOfficer.find(r => r.value === String(newValue));
     setApprovalOfficerSelected(selectedApprovalOfficer || null);
   };
-
   const handleVerificationOfficerChange = (newValue: string | number) => {
     const selectedVerificationOfficer = verificationOfficer.find(r => r.value === String(newValue));
     setVerificationOfficerSelected(selectedVerificationOfficer || null);
@@ -42,44 +39,33 @@ export const IcForm4 = () => {
 
   const handleCumpleRequisito1Change = (valor: string) => {
     setCumpleRequisito1(valor);
-    console.log('Requisito 1:', valor);
   };
-
   const handleCumpleRequisito2Change = (valor: string) => {
     setCumpleRequisito2(valor);
-    console.log('Requisito 2:', valor);
   };
   const handleCumpleRequisito3Change = (valor: string) => {
     setCumpleRequisito3(valor);
-    console.log('Requisito 3:', valor);
   };
   const handleCumpleRequisito4Change = (valor: string) => {
     setCumpleRequisito4(valor);
-    console.log('Requisito 4:', valor);
   };
   const handleCumpleRequisito5Change = (valor: string) => {
     setCumpleRequisito5(valor);
-    console.log('Requisito 5:', valor);
   };
   const handleCumpleRequisito6Change = (valor: string) => {
     setCumpleRequisito6(valor);
-    console.log('Requisito 6:', valor);
   };
   const handleCumpleRequisito7Change = (valor: string) => {
     setCumpleRequisito7(valor);
-    console.log('Requisito 7:', valor);
   };
   const handleCumpleRequisito8Change = (valor: string) => {
     setCumpleRequisito8(valor);
-    console.log('Requisito 8:', valor);
   };
   const handleCumpleRequisito9Change = (valor: string) => {
     setCumpleRequisito9(valor);
-    console.log('Requisito 9:', valor);
   };
   const handleCumpleRequisito10Change = (valor: string) => {
     setCumpleRequisito10(valor);
-    console.log('Requisito 10:', valor);
   };
 
   const verificationOfficer: Options[] = [
@@ -95,7 +81,9 @@ export const IcForm4 = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
 
-    if ( !cumpleRequisito1 || !cumpleRequisito2 || !cumpleRequisito3 || !cumpleRequisito4 || !cumpleRequisito5 || !cumpleRequisito6 || !cumpleRequisito7 || !cumpleRequisito8 || !cumpleRequisito9 || !cumpleRequisito10 ) {
+    if ( !cumpleRequisito1 || !cumpleRequisito2 || !cumpleRequisito3 || !cumpleRequisito4 || 
+      !cumpleRequisito5 || !cumpleRequisito6 || !cumpleRequisito7 || !cumpleRequisito8 || 
+      !cumpleRequisito9 || !cumpleRequisito10 || !verificationOfficerSelected || !approvalOfficerSelected ) {
       alert('Por favor, complete todos los requisitos antes de guardar.');
       return;
     }
@@ -157,6 +145,7 @@ export const IcForm4 = () => {
             onChange={handleCumpleRequisito4Change}
             name="Techos"
           />
+
           <InputCNC
             nombreCriterio="Mesas"
             value={cumpleRequisito5}
@@ -170,6 +159,7 @@ export const IcForm4 = () => {
             onChange={handleCumpleRequisito6Change}
             name="MaquinaESSI"
           />
+
           <InputCNC
             nombreCriterio="Sifones y drenajes"
             value={cumpleRequisito7}
@@ -183,6 +173,7 @@ export const IcForm4 = () => {
             onChange={handleCumpleRequisito8Change}
             name="DisposicionBasura"
           />
+
           <InputCNC
             nombreCriterio="Tuberías de leche"
             value={cumpleRequisito9}
