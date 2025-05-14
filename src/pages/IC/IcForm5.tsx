@@ -1,10 +1,5 @@
 import { Header } from '../../components/molecules/Header'
 
-interface Options {
-  value: string;
-  label: string;
-}
-
 export const IcForm5 = () => {
   return (
     <div>
