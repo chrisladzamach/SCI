@@ -1,5 +1,6 @@
-import { NavComponent } from './components/molecules/NavComponent'
 import { Routes, Route } from 'react-router-dom'
+
+import { NavComponent } from './components/molecules/NavComponent'
 
 import { MainApp } from './pages/MainApp'
 import { LmbMain } from './pages/LMB/LmbMain'
