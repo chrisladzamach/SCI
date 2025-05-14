@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type React from "react";
 import { Header } from "../../components/molecules/Header";
-import { CustomSelect } from "../../components/atoms/CustomSelect"
+import { CustomSelect } from "../../components/atoms/CustomSelect";
 import { AutoInputTime } from "../../components/atoms/inputs/automatic/AutoInputTime";
 import { AutoDateTime } from "../../components/molecules/autoComponents/AutoDateTime";
 import { FormField } from "../../components/molecules/FormField";
@@ -21,31 +21,37 @@ export const IcForm3 = () => {
   const [humedadRelativa, setHumedadRelativa] = useState('');
   const [registroInfo, setRegistroInfo] = useState<{ fecha: string; hora: string } | null>(null);
 
+  // Estados para los mensajes de error
+  const [areaError, setAreaError] = useState('');
+  const [temperaturaError, setTemperaturaError] = useState('');
+  const [humedadRelativaError, setHumedadRelativaError] = useState('');
+  const [responsibleError, setResponsibleError] = useState('');
+  const [observationsError, setObservationsError] = useState('');
+
   useEffect(() => {
     const currentDate = new Date();
     const fecha = currentDate.toLocaleDateString();
     const hora = currentDate.toLocaleTimeString();
     setRegistroInfo({ fecha, hora });
-  }, []); // El array vacío como segundo argumento asegura que esto solo se ejecute una vez al montar el componente
+  }, []);
 
   const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
   const handleTemperaturaChange = (event: React.ChangeEvent<HTMLInputElement>) => setTemperatura(event.target.value);
   const handleHumedadRelativaChange = (event: React.ChangeEvent<HTMLInputElement>) => setHumedadRelativa(event.target.value);
 
-
   const responsible: Options[] = [
     { value: 'inspector-calidad1', label: 'Juliana Burbano' },
     { value: 'inspector-calidad2', label: 'Wilder Barrero' },
-    { value: 'sistemas-de-gestion', label: 'Liceth Alfonso'}
-  ]
+    { value: 'sistemas-de-gestion', label: 'Liceth Alfonso' },
+  ];
 
   const handleResponsibleChange = (newValue: string | number) => {
-    const selectedResponsible = responsible.find(r => r.value === String(newValue));
+    const selectedResponsible = responsible.find((r) => r.value === String(newValue));
     setResponsibleSelected(selectedResponsible || null);
   };
 
   const handleAreaChange = (newValue: string | number) => {
-    const selectedArea = areas.find(a => a.value === String(newValue));
+    const selectedArea = areas.find((a) => a.value === String(newValue));
     setAreaSelected(selectedArea || null);
   };
 
@@ -57,18 +63,49 @@ export const IcForm3 = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    let hasErrors = false;
+
+    setAreaError('');
+    setTemperaturaError('');
+    setHumedadRelativaError('');
+    setResponsibleError('');
+    setObservationsError('');
+
+    if (!areaSelected) {
+      setAreaError('Falta seleccionar el área');
+      hasErrors = true;
+    }
+    if (!temperatura) {
+      setTemperaturaError('Falta la temperatura');
+      hasErrors = true;
+    }
+    if (!humedadRelativa) {
+      setHumedadRelativaError('Falta la humedad relativa');
+      hasErrors = true;
+    }
+    if (!responsibleSelected) {
+      setResponsibleError('Falta seleccionar el responsable');
+      hasErrors = true;
+    }
+    if (!observations) {
+      setObservationsError('Faltan las observaciones');
+      hasErrors = true;
+    }
+
+    if (hasErrors) return;
+
     const formData = {
-      fecha: registroInfo?.fecha || '',
-      hora: registroInfo?.hora || '',
-      area: areaSelected?.value || '',
+      fecha: registroInfo?.fecha,
+      hora: registroInfo?.hora,
+      area: areaSelected?.value,
       "T°C": temperatura,
       HumedadRelativa: humedadRelativa,
       responsable: responsibleSelected?.value || '',
       observaciones: observations,
     };
     console.log(formData);
-    // Aquí podrías enviar los datos del formulario
-  }
+    // Aquí va la lógica para enviar los datos del formulario
+  };
 
   return (
     <div>
@@ -83,9 +120,10 @@ export const IcForm3 = () => {
             className="w-full"
             label="Area:"
           />
+          {areaError && <p className="text-red-500 text-sm">{areaError}</p>}
         </section>
         <section className="flex flex-col gap-4 p-4 border-1 border-b border-zinc-300">
-          <AutoInputTime  />
+          <AutoInputTime />
           <FormField
             labelText="T°C:"
             inputId="Temperatura°C"
@@ -96,6 +134,7 @@ export const IcForm3 = () => {
             inputValue={temperatura}
             onChange={handleTemperaturaChange}
           />
+          {temperaturaError && <p className="text-red-500 text-sm">{temperaturaError}</p>}
           <FormField
             labelText="Humedad relativa:"
             inputId="HumedadR"
@@ -106,6 +145,7 @@ export const IcForm3 = () => {
             inputValue={humedadRelativa}
             onChange={handleHumedadRelativaChange}
           />
+          {humedadRelativaError && <p className="text-red-500 text-sm">{humedadRelativaError}</p>}
           <CustomSelect
             options={responsible}
             value={responsibleSelected?.value}
@@ -113,6 +153,7 @@ export const IcForm3 = () => {
             className="w-full"
             label="Responsable"
           />
+          {responsibleError && <p className="text-red-500 text-sm">{responsibleError}</p>}
           <TxtArea
             id="Observations"
             name="Observations"
@@ -124,6 +165,7 @@ export const IcForm3 = () => {
             classNameTextArea="resize-none focus:border-blue-500"
             classNameLabel="text-blue-600"
           />
+          {observationsError && <p className="text-red-500 text-sm">{observationsError}</p>}
         </section>
         <FormButtons />
       </form>

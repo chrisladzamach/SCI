@@ -1,5 +1,4 @@
 import React from "react";
-
 import { InputComponent } from "../atoms/inputs/InputComponents.tsx";
 import { LabelComponent } from "../atoms/LabelComponent.tsx";
 
@@ -12,6 +11,8 @@ interface FormFieldProps {
   inputRequired?: boolean;
   inputPlaceholder?: string;
   inputClassName?: string;
+  inputValue?: string | number;
+  onChange?: React.ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement>; 
   [key: string]: any;
 }
 
@@ -24,6 +25,8 @@ export const FormField: React.FC<FormFieldProps> = ({
   inputRequired = false,
   inputPlaceholder = "",
   inputClassName = "",
+  inputValue,
+  onChange,
   ...rest
 }) => {
   return (
@@ -36,6 +39,8 @@ export const FormField: React.FC<FormFieldProps> = ({
         required={inputRequired}
         placeholder={inputPlaceholder}
         classNameInput={inputClassName}
+        value={inputValue}
+        onChange={onChange}
       />
     </div>
   );
