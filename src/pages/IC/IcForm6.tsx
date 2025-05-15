@@ -46,7 +46,7 @@ export const IcForm6 = () => {
     { value: 'inspector-calidad1', label: 'Juliana Burbano' },
     { value: 'inspector-calidad2', label: 'Wilder Barrero' },
     { value: 'sistemas-de-gestion', label: 'Liceth Alfonso' },
-  ]
+  ];
 
   const areas: Options[] = [
     { value: 'Area 1', label: 'Area 1' },
@@ -58,13 +58,13 @@ export const IcForm6 = () => {
     { value: "producto1", label: "Producto 1" },
     { value: "producto2", label: "Producto 2" },
     { value: "producto3", label: "Producto 3" },
-  ]
+  ];
   
   const concentration: Options[] = [
     { value: "concentration1", label: "0.20%" },
     { value: "concentration2", label: "0.40%" },
     { value: "concentration3", label: "0.60%" },
-  ]
+  ];
   
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
@@ -77,9 +77,9 @@ export const IcForm6 = () => {
       concentracion: concentrationSelected?.value || '',
       responsable: responsibleSelected?.value || '',
       observaciones: observations,
-    }
+    };
     console.log(formData);
-  }
+  };
 
   return (
     <div>
@@ -140,5 +140,5 @@ export const IcForm6 = () => {
         <FormButtons />
       </form>
     </div>
-  )
-}
+  );
+};
