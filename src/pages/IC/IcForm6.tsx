@@ -1,9 +1,10 @@
 import React from 'react'
-import { CustomSelect } from "../../components/atoms/CustomSelect";
+
 import { AutoDateTime } from "../../components/molecules/autoComponents/AutoDateTime";
-import { Header } from "../../components/molecules/Header"
-import { FormButtons } from "../../components/molecules/FormButtons"
+import { FormButtons } from "../../components/molecules/FormButtons";
+import { CustomSelect } from "../../components/atoms/CustomSelect";
 import { TxtArea } from '../../components/atoms/inputs/TxtArea';
+import { Header } from "../../components/molecules/Header";
 
 interface Options {
   value: string;
