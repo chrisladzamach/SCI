@@ -104,7 +104,6 @@ export const IcForm3 = () => {
       observaciones: observations,
     };
     console.log(formData);
-    // Aquí va la lógica para enviar los datos del formulario al back
   };
 
   return (
