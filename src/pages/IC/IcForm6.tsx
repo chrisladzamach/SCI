@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { AutoDateTime } from "../../components/molecules/autoComponents/AutoDateTime";
+import { AutoDateTime } from '../../components/molecules/autoComponents/AutoDateTime'
 import { FormButtons } from "../../components/molecules/FormButtons";
 import { CustomSelect } from "../../components/atoms/CustomSelect";
 import { TxtArea } from '../../components/atoms/inputs/TxtArea';
@@ -12,11 +12,16 @@ interface Options {
 }
 
 export const IcForm6 = () => {
-  const [areaSelected, setAreaSelected] = React.useState<Options | null>(null);
-  const [productSelected, setProductSelected ] = React.useState<Options | null>(null);
-  const [concentrationSelected, setConcentrationSelected] = React.useState<Options | null>(null);
-  const [observations, setObservations] = React.useState('');
-  const [responsibleSelected, setResponsibleSelected] = React.useState<Options | null>(null);
+  const [areaSelected, setAreaSelected] = React.useState<Options | null>(null)
+  const [productSelected, setProductSelected] = React.useState<Options | null>(null)
+  const [concentrationSelected, setConcentrationSelected] = React.useState<Options | null>(null)
+  const [observations, setObservations] = React.useState('')
+  const [responsibleSelected, setResponsibleSelected] = React.useState<Options | null>(null)
+
+  const [showAreaError, setShowAreaError] = React.useState(false)
+  const [showProductError, setShowProductError] = React.useState(false)
+  const [showConcentrationError, setShowConcentrationError] = React.useState(false)
+  const [showResponsibleError, setShowResponsibleError] = React.useState(false)
 
   const handleResponsibleChange = (newValue: string | number) => {
     const selectedResponsible = responsible.find(r => r.value === String(newValue));
@@ -25,6 +30,7 @@ export const IcForm6 = () => {
 
   const handleObservationChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setObservations(event.target.value);
+    // Observations field is optional, so no error state is needed here
   };
 
   const handleAreaChange = (newValue: string | number) => {
@@ -33,11 +39,13 @@ export const IcForm6 = () => {
   };
 
   const handleProduct = (newValue: string | number) => {
+    setShowProductError(false)
     const selectedProduct = product.find(r => r.value === String(newValue));
     setProductSelected(selectedProduct || null);
   };
 
   const handleConcentration = (newValue: string | number) => {
+    setShowConcentrationError(false)
     const selectedConcentration = concentration.find(r => r.value === String(newValue));
     setConcentrationSelected(selectedConcentration || null);
   };
@@ -69,7 +77,19 @@ export const IcForm6 = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     
-    const currentDate = new Date();
+    const isAreaValid = !!areaSelected;
+    const isProductValid = !!productSelected;
+    const isConcentrationValid = !!concentrationSelected;
+    const isResponsibleValid = !!responsibleSelected;
+
+    setShowAreaError(!isAreaValid);
+    setShowProductError(!isProductValid);
+    setShowConcentrationError(!isConcentrationValid);
+    setShowResponsibleError(!isResponsibleValid);
+
+    if (!isAreaValid || !isProductValid || !isConcentrationValid || !isResponsibleValid) {
+      return;
+    }
     const formData = {
       fecha: currentDate.toLocaleDateString(),
       area: areaSelected?.value || '',
@@ -84,47 +104,58 @@ export const IcForm6 = () => {
   return (
     <div>
       <Header formCode='(RE-08-LC)' formName='Control de aspersiones ambientales.' />
-      <form action="" onSubmit={handleSubmit} className="p-4">
+      <form action="" onSubmit={handleSubmit} className="p-4 flex flex-col gap-4">
         <section className="border-b flex flex-col gap-2 border-zinc-400 pb-4">
           <AutoDateTime />
         </section>
-        <section>
-          <CustomSelect 
-            options={areas}
-            value={areaSelected?.value}
-            onChange={handleAreaChange}
-            className="w-full"
-            label="Area: "
-            required
-          />
+        <section className='grid grid-cols-2 gap-4'>
+          <div>
+            <CustomSelect 
+              options={areas}
+              value={areaSelected?.value}
+              onChange={handleAreaChange}
+              className="w-full"
+              label="Area: "
+              required
+            />
+            {showAreaError && <p className="text-red-500 text-sm mt-1">Este campo es obligatorio</p>}
+          </div>
+          <div>
+            <CustomSelect 
+              options={product}
+              value={productSelected?.value}
+              onChange={handleProduct}
+              className="w-full"
+              label='Producto: '
+              required
+            />
+            {showProductError && <p className="text-red-500 text-sm mt-1">Este campo es obligatorio</p>}
+          </div>
 
-          <CustomSelect 
-            options={product}
-            value={productSelected?.value}
-            onChange={handleProduct}
-            className="w-full"
-            label="Producto: "
-            required
-          />
+          <div>
+            <CustomSelect 
+              options={concentration}
+              value={concentrationSelected?.value}
+              onChange={handleConcentration}
+              className="w-full"
+              label='Concentración: '
+              required
+            />
+            {showConcentrationError && <p className="text-red-500 text-sm mt-1">Este campo es obligatorio</p>}            
+          </div>
 
-          <CustomSelect 
-            options={concentration}
-            value={concentrationSelected?.value}
-            onChange={handleConcentration}
-            className="w-full"
-            label="Concentración: "
-            required
-          />
-
-          <CustomSelect 
-            options={responsible}
-            value={responsibleSelected?.value}
-            onChange={handleResponsibleChange}
-            className="w-full"
-            label="Responsable: "
-            required
-          />
-
+          <div>
+            <CustomSelect 
+              options={responsible}
+              value={responsibleSelected?.value}
+              onChange={handleResponsibleChange}
+              className="w-full"
+              label="Responsable: "
+              required
+            />
+            {showResponsibleError && <p className="text-red-500 text-sm mt-1">Este campo es obligatorio</p>}
+          </div>
+        </section>
           <TxtArea
             id="Observations"
             name="Observations"
@@ -136,9 +167,9 @@ export const IcForm6 = () => {
             classNameTextArea="resize-none focus:border-blue-500"
             classNameLabel="text-blue-600"
           />
-        </section>
         <FormButtons />
       </form>
     </div>
   );
 };
+const currentDate = new Date();
