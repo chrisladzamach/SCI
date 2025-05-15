@@ -120,7 +120,6 @@ export const IcForm5 = () => {
             <div className="col-span-2 md:col-span-1 text-center">NA</div>
             <div className="col-span-12 md:col-span-2 text-center md:text-left">Observaciones</div>
           </div>
-
           {criterios.map((criterio, index) => (
             <div key={index} className="space-y-2">
               <div className="grid grid-cols-12 gap-4 items-center">
@@ -148,7 +147,6 @@ export const IcForm5 = () => {
               </div>
             </div>
           ))}
-          
         </section>
       </form>
     </div>
