@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { CustomSelect } from '../../components/atoms/CustomSelect'
+
 import { AutoInputDate } from '../../components/atoms/inputs/automatic/AutoInputDate'
-import { Header } from '../../components/molecules/Header'
-import { FormField } from '../../components/molecules/FormField';
 import { LabelComponent } from '../../components/atoms/LabelComponent';
-import { TxtArea } from '../../components/atoms/inputs/TxtArea';
 import { FormButtons } from '../../components/molecules/FormButtons';
+import { CustomSelect } from '../../components/atoms/CustomSelect';
+import { FormField } from '../../components/molecules/FormField';
+import { TxtArea } from '../../components/atoms/inputs/TxtArea';
+import { Header } from '../../components/molecules/Header';
 
 interface Options {
   value: string;
@@ -121,7 +122,6 @@ export const IcForm5 = () => {
       })),
     };
     console.log(formData);
-    // Aquí iría la lógica para enviar el formulario
   };
 
   return (
@@ -183,7 +183,7 @@ export const IcForm5 = () => {
                 <div className="col-span-6 md:col-span-7 text-sm">
                   {index + 1}. {criterio}
                 </div>
-                <div className="col-span-6 md:col-span-3 flex justify-around items-center px-2 py-2">
+                <div className="col-span-6 md:col-span-3 flex justify-around items-center px-0 py-2">
                   <div className="flex flex-col items-center">
                     <input
                       type="radio"
@@ -192,7 +192,6 @@ export const IcForm5 = () => {
                       onChange={(e) => handleCriterioChange(e, index)}
                       className="size-6"
                     />
-                    <label className="text-xs">C</label>
                   </div>
                   <div className="flex flex-col items-center">
                     <input
@@ -202,7 +201,6 @@ export const IcForm5 = () => {
                       onChange={(e) => handleCriterioChange(e, index)}
                       className="size-6"
                     />
-                    <label className="text-xs">NC</label>
                   </div>
                   <div className="flex flex-col items-center">
                     <input
@@ -212,7 +210,6 @@ export const IcForm5 = () => {
                       onChange={(e) => handleCriterioChange(e, index)}
                       className="size-6"
                     />
-                    <label className="text-xs">NA</label>
                   </div>
                 </div>
                 <div className="col-span-12 md:col-span-2">
