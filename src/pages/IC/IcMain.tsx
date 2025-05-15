@@ -1,5 +1,5 @@
-import { FormCard } from '../../components/atoms/FormCard'
-import { Header } from '../../components/molecules/Header'
+import { FormCard } from '../../components/atoms/FormCard';
+import { Header } from '../../components/molecules/Header';
 
 export const IcMain = () => {
   return (

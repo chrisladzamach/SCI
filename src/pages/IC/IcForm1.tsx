@@ -13,8 +13,8 @@ interface Options {
 }
 
 export const IcForm1 = () => {
-  const [filterSelected, setFilterSelected] = useState<Options | null>(null);
   const [responsibleSelected, setResponsibleSelected] = useState<Options | null>(null);
+  const [filterSelected, setFilterSelected] = useState<Options | null>(null);
   const [observations, setObservations] = useState('');
 
   const handleObservationChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {

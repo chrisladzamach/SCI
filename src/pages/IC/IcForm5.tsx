@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
-import { AutoInputDate } from '../../components/atoms/inputs/automatic/AutoInputDate'
+import { AutoInputDate } from '../../components/atoms/inputs/automatic/AutoInputDate';
 import { LabelComponent } from '../../components/atoms/LabelComponent';
 import { FormButtons } from '../../components/molecules/FormButtons';
 import { CustomSelect } from '../../components/atoms/CustomSelect';
@@ -14,12 +14,12 @@ interface Options {
 }
 
 export const IcForm5 = () => {
-  const [areaSelected, setAreaSelected] = React.useState<Options | null>(null);
   const [verificationOfficerSelected, setVerificationOfficerSelected] = useState<Options | null>(null);
-  const [personalInspected, setPersonalInspected] = useState<string>('');
-  const [observations, setObservations] = useState('');
   const [criterioSeleccionado, setCriterioSeleccionado] = useState<{ [key: number]: string }>({});
+  const [areaSelected, setAreaSelected] = React.useState<Options | null>(null);
+  const [personalInspected, setPersonalInspected] = useState<string>('');
   const [errores, setErrores] = useState<{ [key: string]: string }>({});
+  const [observations, setObservations] = useState('');
 
   const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
 

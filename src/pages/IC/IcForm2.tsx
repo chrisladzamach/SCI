@@ -14,11 +14,11 @@ interface Options {
 }
 
 export const IcForm2 = () => {
-  const [productSelected, setProductSelected] = useState<Options | null>(null);
-  const [boquillaSelected, setBoquillaSelected] = useState<Options | null>(null);
-  const [observations, setObservations] = useState('');
   const [responsibleSelected, setResponsibleSelected] = useState<Options | null>(null);
+  const [boquillaSelected, setBoquillaSelected] = useState<Options | null>(null);
+  const [productSelected, setProductSelected] = useState<Options | null>(null);
   const [calculatedDate, setCalculatedDate] = useState('');
+  const [observations, setObservations] = useState('');
   const [lote, setLote] = useState('');
   
   const handleResponsibleChange = (newValue: string | number) => {

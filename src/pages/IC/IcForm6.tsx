@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 
-import { AutoDateTime } from '../../components/molecules/autoComponents/AutoDateTime'
+import { AutoDateTime } from '../../components/molecules/autoComponents/AutoDateTime';
 import { FormButtons } from "../../components/molecules/FormButtons";
 import { CustomSelect } from "../../components/atoms/CustomSelect";
 import { TxtArea } from '../../components/atoms/inputs/TxtArea';
@@ -12,16 +12,17 @@ interface Options {
 }
 
 export const IcForm6 = () => {
-  const [areaSelected, setAreaSelected] = React.useState<Options | null>(null)
-  const [productSelected, setProductSelected] = React.useState<Options | null>(null)
-  const [concentrationSelected, setConcentrationSelected] = React.useState<Options | null>(null)
-  const [observations, setObservations] = React.useState('')
-  const [responsibleSelected, setResponsibleSelected] = React.useState<Options | null>(null)
+  const [concentrationSelected, setConcentrationSelected] = React.useState<Options | null>(null);
+  const [responsibleSelected, setResponsibleSelected] = React.useState<Options | null>(null);
+  const [productSelected, setProductSelected] = React.useState<Options | null>(null);
+  const [areaSelected, setAreaSelected] = React.useState<Options | null>(null);
+  const [observations, setObservations] = React.useState('');
 
-  const [showAreaError, setShowAreaError] = React.useState(false)
-  const [showProductError, setShowProductError] = React.useState(false)
-  const [showConcentrationError, setShowConcentrationError] = React.useState(false)
-  const [showResponsibleError, setShowResponsibleError] = React.useState(false)
+  // Manejo de estado para los errores.
+  const [showConcentrationError, setShowConcentrationError] = React.useState(false);
+  const [showResponsibleError, setShowResponsibleError] = React.useState(false);
+  const [showProductError, setShowProductError] = React.useState(false);
+  const [showAreaError, setShowAreaError] = React.useState(false);
 
   const handleResponsibleChange = (newValue: string | number) => {
     const selectedResponsible = responsible.find(r => r.value === String(newValue));

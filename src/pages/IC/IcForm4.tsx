@@ -13,6 +13,9 @@ interface Options {
 }
 
 export const IcForm4 = () => {
+  const [verificationOfficerSelected, setVerificationOfficerSelected] = useState<Options | null>(null);
+  const [approvalOfficerSelected, setApprovalOfficerSelected] = useState<Options | null>(null);
+  const [cumpleRequisito10, setCumpleRequisito10] = useState('');
   const [cumpleRequisito1, setCumpleRequisito1] = useState('');
   const [cumpleRequisito2, setCumpleRequisito2] = useState('');
   const [cumpleRequisito3, setCumpleRequisito3] = useState('');
@@ -22,10 +25,7 @@ export const IcForm4 = () => {
   const [cumpleRequisito7, setCumpleRequisito7] = useState('');
   const [cumpleRequisito8, setCumpleRequisito8] = useState('');
   const [cumpleRequisito9, setCumpleRequisito9] = useState('');
-  const [cumpleRequisito10, setCumpleRequisito10] = useState('');
   const [observations, setObservations] = useState('');
-  const [verificationOfficerSelected, setVerificationOfficerSelected] = useState<Options | null>(null);
-  const [approvalOfficerSelected, setApprovalOfficerSelected] = useState<Options | null>(null);
 
   const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
   

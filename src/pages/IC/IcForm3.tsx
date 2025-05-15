@@ -15,19 +15,19 @@ interface Options {
 }
 
 export const IcForm3 = () => {
-  const [areaSelected, setAreaSelected] = useState<Options | null>(null);
+  const [registroInfo, setRegistroInfo] = useState<{ fecha: string; hora: string } | null>(null);
   const [responsibleSelected, setResponsibleSelected] = useState<Options | null>(null);
+  const [areaSelected, setAreaSelected] = useState<Options | null>(null);
+  const [humedadRelativa, setHumedadRelativa] = useState('');
   const [observations, setObservations] = useState('');
   const [temperatura, setTemperatura] = useState('');
-  const [humedadRelativa, setHumedadRelativa] = useState('');
-  const [registroInfo, setRegistroInfo] = useState<{ fecha: string; hora: string } | null>(null);
 
   // Estados para los mensajes de error
-  const [areaError, setAreaError] = useState('');
-  const [temperaturaError, setTemperaturaError] = useState('');
   const [humedadRelativaError, setHumedadRelativaError] = useState('');
+  const [temperaturaError, setTemperaturaError] = useState('');
   const [responsibleError, setResponsibleError] = useState('');
-
+  const [areaError, setAreaError] = useState('');
+  
   useEffect(() => {
     const currentDate = new Date();
     const fecha = currentDate.toLocaleDateString();

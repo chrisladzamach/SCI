@@ -3,9 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import { NavComponent } from './components/molecules/NavComponent';
 
 import { MainApp } from './pages/MainApp';
+
 import { LmbMain } from './pages/LMB/LmbMain';
+
 import { LfqMain } from './pages/LFQ/LfqMain';
 
+// Importaciones de módulo IC (Incpección de calidad)
 import { IcMain } from './pages/IC/IcMain';
 import { IcForm1 } from './pages/IC/IcForm1'; 
 import { IcForm2 } from './pages/IC/IcForm2';
@@ -14,6 +17,7 @@ import { IcForm4 } from './pages/IC/IcForm4';
 import { IcForm5 } from './pages/IC/IcForm5';
 import { IcForm6 } from './pages/IC/IcForm6';
 
+// Página not found
 import { NotFound } from './pages/NotFound';
 
 export const App = () => {
