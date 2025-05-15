@@ -113,7 +113,7 @@ export const IcForm4 = () => {
 
   return (
     <div>
-      <Header formCode="(RE-07-LC)" formName="Inspección de limpieza y desinfección en planta" href="/icmain" />
+      <Header formCode="(RE-07-LC)" formName="Inspección de limpieza y desinfección en planta" />
       <form action="" onSubmit={handleSubmit} className="p-4">
         <section className="grid grid-cols-2 md:grid-cols-1 gap-4">
           <AutoDateTime />

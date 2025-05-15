@@ -97,7 +97,7 @@ export const IcForm2 = () => {
 
   return (
     <div>
-      <Header formName='Verificación de producto terminado.' formCode='(RE-05-LC)' href='/icmain' />
+      <Header formName='Verificación de producto terminado.' formCode='(RE-05-LC)'/>
       <form className="p-4" onSubmit={handleSubmit}>
         <section className="grid grid-cols-2 md:grid-cols-1 gap-4 m-4">
           <AutoDateTime />

@@ -126,7 +126,7 @@ export const IcForm5 = () => {
 
   return (
     <div>
-      <Header formCode='(RE-01-LC)' formName='Formato de practicas higiénicas y medidas de protección' href='/icmain' />
+      <Header formCode='(RE-01-LC)' formName='Formato de practicas higiénicas y medidas de protección' />
       <form className='p-4' onSubmit={handleSubmit}>
         <section className='grid grid-cols-2 md:grid-cols-2 gap-4 border-b-2 border-zinc-400 pb-4'>
           <div className='flex flex-col gap-1'>

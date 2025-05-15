@@ -64,7 +64,7 @@ export const IcForm1 = () => {
 
   return (
     <div className=''>
-      <Header formName='Control de concentración de producto en filtro sanitario' formCode='(RE-09-LC)' href='/icmain' />
+      <Header formName='Control de concentración de producto en filtro sanitario' formCode='(RE-09-LC)' />
       <form className='p-4' onSubmit={handleSubmit}>
         <section className="border-b flex flex-col gap-2 border-zinc-400 pb-2">
           <AutoDateTime />

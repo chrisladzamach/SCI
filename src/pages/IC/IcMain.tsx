@@ -4,7 +4,7 @@ import { Header } from '../../components/molecules/Header'
 export const IcMain = () => {
   return (
     <div className=''>
-      <Header formName='Inspección de Calidad' formCode='IC' href='/' />
+      <Header formName='Inspección de Calidad' formCode='IC' />
       <section className='grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 m-2 p-2'>
         <FormCard 
             title='(RE-09-LC)'

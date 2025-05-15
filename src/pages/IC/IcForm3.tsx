@@ -109,7 +109,7 @@ export const IcForm3 = () => {
 
   return (
     <div>
-      <Header formCode="(RE-06-LC)" formName="Verificación de condiciones ambientales" href="/icmain" />
+      <Header formCode="(RE-06-LC)" formName="Verificación de condiciones ambientales" />
       <form onSubmit={handleSubmit}>
         <section className="flex flex-col gap-4 p-4 border-1 border-b border-zinc-300">
           {registroInfo && <AutoDateTime />}
