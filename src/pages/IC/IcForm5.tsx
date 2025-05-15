@@ -5,6 +5,7 @@ import { Header } from '../../components/molecules/Header'
 import { FormField } from '../../components/molecules/FormField';
 import { LabelComponent } from '../../components/atoms/LabelComponent';
 import { TxtArea } from '../../components/atoms/inputs/TxtArea';
+import { FormButtons } from '../../components/molecules/FormButtons';
 
 interface Options {
   value: string;
@@ -16,21 +17,31 @@ export const IcForm5 = () => {
   const [verificationOfficerSelected, setVerificationOfficerSelected] = useState<Options | null>(null);
   const [personalInspected, setPersonalInspected] = useState<string>('');
   const [observations, setObservations] = useState('');
+  const [criterioSeleccionado, setCriterioSeleccionado] = useState<{ [key: number]: string }>({});
+  const [errores, setErrores] = useState<{ [key: string]: string }>({});
 
   const handleObservations = (event: React.ChangeEvent<HTMLTextAreaElement>) => setObservations(event.target.value);
 
   const handleAreaChange = (newValue: string | number) => {
     const selectedArea = areas.find(r => r.value === String(newValue));
     setAreaSelected(selectedArea || null);
+    setErrores(prev => ({ ...prev, area: '' }));
   };
 
   const handleVerificationOfficerChange = (newValue: string | number) => {
     const selectedVerificationOfficer = verificationOfficer.find(r => r.value === String(newValue));
     setVerificationOfficerSelected(selectedVerificationOfficer || null);
+    setErrores(prev => ({ ...prev, responsableVerificacion: '' }));
   };
 
   const handlePersonalInspectedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPersonalInspected(event.target.value);
+    setErrores(prev => ({ ...prev, personalInspeccionado: '' }));
+  };
+
+  const handleCriterioChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+    setCriterioSeleccionado({ ...criterioSeleccionado, [index]: event.target.value });
+    setErrores(prev => ({ ...prev, [`criterio-${index}`]: '' }));
   };
 
   const criterios = [
@@ -49,7 +60,7 @@ export const IcForm5 = () => {
     "¿El personal manipulador de alimentos no come, bebe o mastica cualquier objeto o producto, como tampoco fuma o escupe en las áreas donde se manipulan alimentos?",
     "¿El personal que presente afecciones de la piel o enfermedad infecto-contagiosa esta excluido de toda actividad directa de manipulación de alimentos?",
     "¿Los manipuladores no se sientan, acuestan, inclinan o similares en el pasto, andenes o lugares donde la ropa de trabajo pueda contaminarse?",
-  ]
+  ];
 
   const verificationOfficer: Options[] = [
     { value: 'inspector-calidad1', label: 'Juliana Burbano' },
@@ -65,6 +76,36 @@ export const IcForm5 = () => {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+    let hasErrors = false;
+    const nuevosErrores: { [key: string]: string } = {};
+
+    if (!areaSelected) {
+      nuevosErrores.area = 'Falta completar este campo';
+      hasErrors = true;
+    }
+
+    if (!verificationOfficerSelected) {
+      nuevosErrores.responsableVerificacion = 'Falta completar este campo';
+      hasErrors = true;
+    }
+
+    if (!personalInspected) {
+      nuevosErrores.personalInspeccionado = 'Falta completar este campo';
+      hasErrors = true;
+    }
+
+    criterios.forEach((_, index) => {
+      if (!criterioSeleccionado[index]) {
+        nuevosErrores[`criterio-${index}`] = 'Falta seleccionar una opción';
+        hasErrors = true;
+      }
+    });
+
+    setErrores(nuevosErrores);
+
+    if (hasErrors) {
+      return;
+    }
 
     const currentDate = new Date();
     const formData = {
@@ -73,9 +114,15 @@ export const IcForm5 = () => {
       area: areaSelected?.value || '',
       responsableVerificacion: verificationOfficerSelected?.value || '',
       personalInspeccionado: personalInspected,
-    }
+      criterios: criterios.map((criterio, index) => ({
+        criterio: criterio,
+        seleccion: criterioSeleccionado[index] || null,
+        observaciones: observations,
+      })),
+    };
     console.log(formData);
-  }
+    // Aquí iría la lógica para enviar el formulario
+  };
 
   return (
     <div>
@@ -86,30 +133,40 @@ export const IcForm5 = () => {
             <LabelComponent text='Fecha:' />
             <AutoInputDate className='rounded-lg max-h-10' />
           </div>
-          <CustomSelect
-            options={areas}
-            value={areaSelected?.value}
-            onChange={handleAreaChange}
-            className='w-full'
-            label='Area: '
-          />
-          <CustomSelect
-            options={verificationOfficer}
-            value={verificationOfficerSelected?.value}
-            onChange={handleVerificationOfficerChange}
-            className='w-full'
-            label='Responsable de verificación: '
-          />
+          <div className='flex flex-col gap-1'>
+            <CustomSelect
+              options={areas}
+              value={areaSelected?.value}
+              onChange={handleAreaChange}
+              className='w-full'
+              label='Area: '
+            />
+            {errores.area && <p className="text-red-500 text-xs italic">{errores.area}</p>}
+          </div>
 
-          <FormField
-            labelText='Personal Inspeccionado: '
-            inputId='personalInspec'
-            inputName='inspect'
-            inputType='text'
-            inputRequired={true}
-            inputPlaceholder='Ingrese nombre del persoanl inspeccionado...'
-            onChange={handlePersonalInspectedChange}
-          />
+          <div className='flex flex-col gap-1'>
+            <CustomSelect
+              options={verificationOfficer}
+              value={verificationOfficerSelected?.value}
+              onChange={handleVerificationOfficerChange}
+              className='w-full'
+              label='Responsable de verificación: '
+            />
+            {errores.responsableVerificacion && <p className="text-red-500 text-xs italic">{errores.responsableVerificacion}</p>}
+          </div>
+
+          <div className='flex flex-col gap-1'>
+            <FormField
+              labelText='Personal Inspeccionado: '
+              inputId='personalInspec'
+              inputName='inspect'
+              inputType='text'
+              inputRequired={true}
+              inputPlaceholder='Ingrese nombre del persoanl inspeccionado...'
+              onChange={handlePersonalInspectedChange}
+            />
+            {errores.personalInspeccionado && <p className="text-red-500 text-xs italic">{errores.personalInspeccionado}</p>}
+          </div>
         </section>
 
         <section>
@@ -126,28 +183,57 @@ export const IcForm5 = () => {
                 <div className="col-span-6 md:col-span-7 text-sm">
                   {index + 1}. {criterio}
                 </div>
-                <div className="col-span-6 md:col-span-3 flex px-4 py-4 justify-between">
-                  <input type="radio" name="criterio" id="" />
-                  <input type="radio" name="criterio" id="" />
-                  <input type="radio" name="criterio" id="" />
+                <div className="col-span-6 md:col-span-3 flex justify-around items-center px-2 py-2">
+                  <div className="flex flex-col items-center">
+                    <input
+                      type="radio"
+                      name={`criterio-${index}`}
+                      value="C"
+                      onChange={(e) => handleCriterioChange(e, index)}
+                      className="size-6"
+                    />
+                    <label className="text-xs">C</label>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <input
+                      type="radio"
+                      name={`criterio-${index}`}
+                      value="NC"
+                      onChange={(e) => handleCriterioChange(e, index)}
+                      className="size-6"
+                    />
+                    <label className="text-xs">NC</label>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <input
+                      type="radio"
+                      name={`criterio-${index}`}
+                      value="NA"
+                      onChange={(e) => handleCriterioChange(e, index)}
+                      className="size-6"
+                    />
+                    <label className="text-xs">NA</label>
+                  </div>
                 </div>
                 <div className="col-span-12 md:col-span-2">
-                  <TxtArea 
-                    id="Observations"
-                    name="Observations"
+                  <TxtArea
+                    id={`Observations-${index}`}
+                    name={`Observations-${index}`}
                     label=""
-                    rows={5}
+                    rows={3}
                     placeholder="Ingrese observaciones si las hay..."
                     value={observations}
                     onChange={handleObservations}
-                    classNameTextArea="resize-none my-2 min-w-full outline-none border-none bg-zinc-100 focus:outline-none"
+                    classNameTextArea="resize-none my-1 min-w-full outline-none border-none bg-zinc-100 focus:outline-none"
                     classNameLabel="text-blue-600"
                   />
                 </div>
               </div>
+              {errores[`criterio-${index}`] && <p className="text-red-500 text-xs italic">{errores[`criterio-${index}`]}</p>}
             </div>
           ))}
         </section>
+        <FormButtons />
       </form>
     </div>
   )
