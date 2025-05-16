@@ -9,7 +9,7 @@ export const AdminMain = () => {
         <FormCard 
           title='Inspección de Calidad (IC)'
           description='Registros en el módulo de Inspección de calidad (IC)'
-          to='/icregs'
+          to='/adminMain/icregs'
         />
       </section>
     </div>

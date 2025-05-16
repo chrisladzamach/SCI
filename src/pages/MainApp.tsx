@@ -1,6 +1,6 @@
 export const MainApp = () => {
   return (
-    <div>
+    <div className="">
         <h1>Página principal</h1>
     </div>
   )

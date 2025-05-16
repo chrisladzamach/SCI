@@ -18,7 +18,10 @@ import { IcForm5 } from './pages/IC/IcForm5';
 import { IcForm6 } from './pages/IC/IcForm6';
 
 // Importaciones de módulo Admin
-import { AdminMain } from './pages/AdminView/adminMain';
+import { AdminMain } from './pages/AdminView/AdminMain';
+import { IcGetElements } from './pages/AdminView/IcGetElements';
+import { IcRegForm1 } from './pages/AdminView/IcRegisters/IcRegForm1';
+
 
 // Página not found
 import { NotFound } from './pages/NotFound';
@@ -32,6 +35,8 @@ export const App = () => {
 
         {/* Admin routes */}
         <Route path="/adminMain" element={<AdminMain />} />
+        <Route path="/adminMain/icregs" element={<IcGetElements />} />
+        <Route path="/adminMain/icregs/IcRegform1" element={<IcRegForm1 />} />
         
         {/* Routes of Inspección de Calidad */}
         <Route path="/icmain" element={<IcMain />} />

@@ -20,7 +20,7 @@ export const Header: React.FC<FormProps> = ({ formName, formCode, onBack }) => {
 
   return (
     <header className="max-w-screen px-2 bg-blue-400 text-white flex items-center gap-2 md:gap-4 md:p-4">
-      <button className="p-2 max-h-[300px]  bg-blue-500 rounded-lg flex items-center" onClick={handleGoBack} >
+      <button className="p-2 max-h-[300px] cursor-pointer bg-blue-500 rounded-lg flex items-center" onClick={handleGoBack} >
         Volver
       </button>
       <section>
