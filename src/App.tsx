@@ -17,6 +17,9 @@ import { IcForm4 } from './pages/IC/IcForm4';
 import { IcForm5 } from './pages/IC/IcForm5';
 import { IcForm6 } from './pages/IC/IcForm6';
 
+// Importaciones de módulo Admin
+import { AdminMain } from './pages/AdminView/adminMain';
+
 // Página not found
 import { NotFound } from './pages/NotFound';
 
@@ -26,6 +29,9 @@ export const App = () => {
       <NavComponent />
       <Routes>
         <Route path="/" element={<MainApp />} />
+
+        {/* Admin routes */}
+        <Route path="/adminMain" element={<AdminMain />} />
         
         {/* Routes of Inspección de Calidad */}
         <Route path="/icmain" element={<IcMain />} />

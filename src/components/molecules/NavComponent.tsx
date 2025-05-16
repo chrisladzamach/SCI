@@ -24,6 +24,11 @@ export const NavComponent: React.FC = () => {
           <NavLinkComponent to="/">Inicio</NavLinkComponent>
         </li>
         <li>
+          <NavLinkComponent to="/adminmain">
+            {isDesktop ? 'Vista Administrador' : 'Admin'}
+          </NavLinkComponent>
+        </li>
+        <li>
           <NavLinkComponent to="/icmain">
             {isDesktop ? 'Inspección de Calidad' : 'IC'}
           </NavLinkComponent>
