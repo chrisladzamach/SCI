@@ -1,4 +1,4 @@
-# SCI (Sistema Centralizado de Información)
+# SCI (Sistema Centralizado de Información - Frontend)
 React + TypeScript + Tailwindcss con Vite
 
 ## ¿Cómo descargar y correr este proyecto?
